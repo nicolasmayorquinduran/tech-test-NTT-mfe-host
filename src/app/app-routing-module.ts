@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/module-federation';
+import { buildRemoteModuleConfig } from 'shared';
+import { REMOTE_MFE_CONFIG } from '../mfe.config';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => loadRemoteModule({
-      type: 'module',
-      remoteEntry: 'http://localhost:4201/remoteEntry.js',
-      exposedModule: './AuthModule'
-    }).then(m => m.AuthModule)
+    loadChildren: () => loadRemoteModule(
+      buildRemoteModuleConfig(REMOTE_MFE_CONFIG.login.remoteEntry, './AuthModule')
+    ).then(m => m.AuthModule)
   }
 ];
 

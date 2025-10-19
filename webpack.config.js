@@ -1,9 +1,13 @@
 const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
+const { getMfeEnv, buildRemoteEntryUrl } = require('../libs/projects/shared/src/lib/core/config/mfe-env.config.js');
+
+const isProduction = process.env.NODE_ENV === 'production';
+const mfeEnv = getMfeEnv(isProduction);
 
 const config = withModuleFederationPlugin({
 
   remotes: {
-    mfLogin: "http://localhost:4201/remoteEntry.js",    
+    'mfLogin': buildRemoteEntryUrl(mfeEnv.login.url),    
   },
 
   shared: {
@@ -12,7 +16,6 @@ const config = withModuleFederationPlugin({
       strictVersion: true, 
       requiredVersion: 'auto' 
     }),
-    // Excluir 'shared' porque es una librería local (file:)
     'shared': { 
       singleton: false,
       strictVersion: false,
@@ -22,6 +25,6 @@ const config = withModuleFederationPlugin({
 
 });
 
-config.output.publicPath = 'http://localhost:4200/';
+config.output.publicPath = `${mfeEnv.host.url}/`;
 
 module.exports = config
