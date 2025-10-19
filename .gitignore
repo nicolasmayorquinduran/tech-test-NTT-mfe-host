@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+pnpm-lock.yaml
 
 # Node
 /node_modules
