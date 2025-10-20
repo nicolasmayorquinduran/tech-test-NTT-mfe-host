@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { loadRemoteModule } from '@angular-architects/module-federation';
-import { buildRemoteModuleConfig } from 'shared';
-import { REMOTE_MFE_CONFIG } from '../mfe.config';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => loadRemoteModule(
-      buildRemoteModuleConfig(REMOTE_MFE_CONFIG.login.remoteEntry, './AuthModule')
-    ).then(m => m.AuthModule)
+    loadChildren: () => import('./modules/public/public.module').then(m => m.PublicModule)
+  },
+  {
+    path: 'member',
+    loadChildren: () => import('./modules/private/private.module').then(m => m.PrivateModule)
   }
 ];
 

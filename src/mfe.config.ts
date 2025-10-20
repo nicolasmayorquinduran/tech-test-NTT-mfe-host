@@ -15,5 +15,10 @@ export const REMOTE_MFE_CONFIG = {
     name: 'mfLogin',
     url: mfeEnv.login.url,
     remoteEntry: buildRemoteEntryUrl(mfeEnv.login.url)
+  },
+  banner: {
+    name: 'mfBanner',
+    url: mfeEnv.banner.url,
+    remoteEntry: buildRemoteEntryUrl(mfeEnv.banner.url)
   }
 };

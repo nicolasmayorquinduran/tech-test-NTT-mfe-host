@@ -7,7 +7,8 @@ const mfeEnv = getMfeEnv(isProduction);
 const config = withModuleFederationPlugin({
 
   remotes: {
-    'mfLogin': buildRemoteEntryUrl(mfeEnv.login.url),    
+    'mfLogin': buildRemoteEntryUrl(mfeEnv.login.url),
+    'mfBanner': buildRemoteEntryUrl(mfeEnv.banner.url),
   },
 
   shared: {
