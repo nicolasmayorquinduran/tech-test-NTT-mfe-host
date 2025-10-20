@@ -1,31 +1,26 @@
 import { Component, signal, inject, OnInit, effect } from '@angular/core';
-import { EventStateBridgeService, GlobalStateService } from 'shared';
+import { Router } from '@angular/router';
+import { AuthService, EventStateBridgeService, GlobalStateService } from 'shared';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   standalone: false,
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
 export class App implements OnInit {
   protected readonly title = signal('host');
-  
   private readonly eventStateBridge = inject(EventStateBridgeService);
   protected readonly globalState = inject(GlobalStateService);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
 
-  constructor() {
-    effect(() => {
-      const user = this.globalState.user();
-      if (user) {
-        console.log('[Host] Usuario global actualizado:', user);
-      } else {
-        console.log('[Host] No hay usuario autenticado');
-      }
-    });
+  onLogout(): void {
+    this.auth.logout();
+    this.router.navigate(['/']);
   }
 
   ngOnInit(): void {
     this.eventStateBridge.initialize();
-    console.log('[Host] EventStateBridge inicializado');
   }
 }

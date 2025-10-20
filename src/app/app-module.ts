@@ -20,7 +20,6 @@ import { apiConfig, authConfig, appConfig } from '../environments/environment';
     provideZonelessChangeDetection(),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
-    // Configuración de la aplicación usando tokens de shared
     { provide: API_CONFIG, useValue: apiConfig },
     { provide: AUTH_CONFIG, useValue: authConfig },
     { provide: APP_CONFIG, useValue: appConfig }

@@ -1,14 +1,10 @@
-@if (globalState.isAuthenticated()) {
-  <div style="margin-top: 2rem; padding: 1rem; background: #e8f5e9; border-radius: 8px;">
-    <h3 style="margin: 0 0 0.5rem 0; color: #2e7d32;">✓ Usuario Autenticado</h3>
-    <p style="margin: 0.25rem 0;"><strong>Nombre:</strong> {{ globalState.userName() }}</p>
-    <p style="margin: 0.25rem 0;"><strong>Email:</strong> {{ globalState.user()?.email }}</p>
-    <p style="margin: 0.25rem 0;"><strong>ID:</strong> {{ globalState.user()?.id }}</p>
+<nav class="navbar">
+  <a class="brand" routerLink="/">Crossref</a>
+  <div class="actions">
+    @if (globalState.isAuthenticated()) {
+      <button class="logout-btn" type="button" (click)="onLogout()">Cerrar sesión</button>
+    }
   </div>
-} @else {
-  <div style="margin-top: 2rem; padding: 1rem; background: #fff3e0; border-radius: 8px;">
-    <p style="margin: 0; color: #e65100;">⚠️ No hay usuario autenticado</p>
-  </div>
-}
+</nav>
 
 <router-outlet />

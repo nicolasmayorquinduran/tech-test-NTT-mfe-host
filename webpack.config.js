@@ -9,6 +9,7 @@ const config = withModuleFederationPlugin({
   remotes: {
     'mfLogin': buildRemoteEntryUrl(mfeEnv.login.url),
     'mfBanner': buildRemoteEntryUrl(mfeEnv.banner.url),
+    'mfMembers': buildRemoteEntryUrl(mfeEnv.members.url),
   },
 
   shared: {
